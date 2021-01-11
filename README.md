@@ -26,18 +26,18 @@ The system find the profiles that are closest yours and extract the restaurants 
 ## Try it!
 
 1. Clone repo locally
-git clone https://github.com/Thib-Matt/Recommendation_System_Zurich_Restaurants.git
 
 2. Create virtual environment & activate it
-python3 -m venv my_env
-source env/bin/activate
 
 3. Install librairies
+
 pip install -r requirements.txt
 
 4. Run flask webapp
+
 flask run
 
 5. Go to your localhost to access webapp:
+
 http://127.0.0.1:5000/
 
