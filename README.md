@@ -18,7 +18,7 @@ First, you select criteria that define your "restaurant customer profile":
 - Restaurant' popularity
 
 Your profile is compared to a database containing different types of profile.
-Each type of profile correspond to a specific cluster of Trip Advisor reviewers.
+Each one corresponds to a specific cluster of Trip Advisor reviewers.
 
 The system find the profiles that are closest yours and extract the restaurants these profiles have the most visited.
 
