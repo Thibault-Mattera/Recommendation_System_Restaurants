@@ -36,10 +36,14 @@ def index():
     popularity_input=[]
     cuisine_countries_input=[]
     best_matching_restaurants=''
+    other_restaurants=''
+    message_user_profile=''
+    message_results_best=''
+    message_results_others=''
 
     if request.method == 'POST':
         
-        time.sleep(3)
+        time.sleep(5)
         for price_range in price_ranges:
             price_range_input.append(request.form.get(price_range))
 
@@ -57,12 +61,32 @@ def index():
         print(popularity_input_list)
         print(cuisine_countries_input_list)
 
-    
-        best_matching_restaurants, other_restaurants = functions.get_list(price_range_input_list,popularity_input_list,cuisine_countries_input_list)
-        time.sleep(5)
-        print(best_matching_restaurants)
+        #convert input to integer
+        price_range_input_list=[int(x) for x in price_range_input_list]
+        popularity_input_list=[int(x) for x in popularity_input_list]
+        cuisine_countries_input_list =[int(x) for x in cuisine_countries_input_list]
 
+        best_matching_restaurants, other_restaurants, favorite_cuisines = functions.get_list(price_range_input_list,popularity_input_list,cuisine_countries_input_list)
+        time.sleep(2)
+
+        sorted_prices = [[x,y] for x,y in sorted(zip(price_range_input_list,price_ranges), reverse=True)]
+        favorite_prices=[item[1] if item[0]>0 else '' for item in sorted_prices]
+        sorted_popularity = [[x,y] for x,y in sorted(zip(popularity_input_list,popularity_choices), reverse=True)]
+        favorite_popularity=[item[1] if item[0]>0 else '' for item in sorted_popularity]
+
+        message_user_profile=['Your profile: ']
+        for item in favorite_cuisines:
+            message_user_profile.append(item)
+        message_user_profile.append(favorite_prices[0])
+        message_user_profile.append(favorite_popularity[0])
+        message_user_profile=" ".join(message_user_profile)
+        
+        print(best_matching_restaurants)
+        message_results_best='Best restaurants for you: '
+        message_results_others='You might also like: '
    
-    return render_template('index.html', user=user, cuisine_countries=cuisine_countries, best_matching_restaurants=best_matching_restaurants)
+    return render_template('index.html', user=user, cuisine_countries=cuisine_countries, best_matching_restaurants=best_matching_restaurants, 
+                                         other_restaurants=other_restaurants, message_user_profile=message_user_profile, 
+                                         message_results_best=message_results_best, message_results_others=message_results_others)
 
 
