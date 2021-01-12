@@ -29,9 +29,10 @@ The system find the profiles that are closest yours and extract the restaurants 
 
 2. Create virtual environment & activate it
 
-3. Install librairies
+3. Install librairies & set flask config
 
 pip install -r requirements.txt
+export FLASK_APP=recom_engine.py
 
 4. Run flask webapp
 
