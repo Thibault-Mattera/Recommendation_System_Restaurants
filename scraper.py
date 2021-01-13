@@ -22,7 +22,7 @@ def scrape_restaurants_links(search_url,session):
     # page request with provided url
     response = session.get(search_url) 
     
-    # check URL status 
+    # check status
     print(response.status_code)
     soup_ = BeautifulSoup(response.content, 'html.parser').find_all()
     
@@ -37,7 +37,8 @@ def scrape_restaurants_links(search_url,session):
     for el in restaurants_list:
         links.append(el.find('a', class_='_2uEVo25r').get('href'))
 
-    for i in range(30, number_of_restaurants, 30):
+
+    for i in range(30, 1831, 30):
         time.sleep(3)
         url_page="https://www.tripadvisor.com/RestaurantSearch-g188113-oa"+str(i)+"-Zurich.html#EATERY_LIST_CONTENTS"
         response = session.get(url_page) 
@@ -155,7 +156,7 @@ def parse_reviews(soup_more):
                 'reviewer_contribution':reviewer_contribution,
                 'review_quote':review_quote,
                 'review_body': review_body,
-                'review_date': review_date, 
+                'review_date': review_date, # 'ratingDate' instead of 'relativeDate'
                 'helpful_vote': helpful_vote
             }
 
@@ -168,11 +169,11 @@ def numbers(s):
 
 
 def scrape_restaurant_details(restaurant_id, session):
-
     ## build complete url
     restaurant_url="https://www.tripadvisor.com"+restaurant_id
+    #  page request for 1 restaurant
     
-    # select all languages for reviews (click on radio button "all languages")
+    # select all languages for reviews (click radio button "all languages")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     driver.get(restaurant_url) 
     time.sleep(5)
@@ -185,10 +186,10 @@ def scrape_restaurant_details(restaurant_id, session):
     except:
         languages=None
     
-    #Selenium hands the page source to Beautiful Soup
+    #Seleium hands the page source to Beautiful Soup
     soup_= BeautifulSoup(driver.page_source, 'lxml').find_all()
 
-    # get restaurant details
+    # get restaurant details: price range, cuisines, special diets and location
     try:
         details=soup_[0].find('div', class_="_3UjHBXYa").find_all('div', class_="_1XLfiSsv")
         details_content=details.find_all('div', class_="_1XLfiSsv")
@@ -271,7 +272,6 @@ def scrape_restaurant_details(restaurant_id, session):
         pages=[str(i) for i in range(2,last_offset+1)]
 
         for page in pages:
-
             driver.find_element_by_link_text(page).click()
             time.sleep(3)
             soup_= BeautifulSoup(driver.page_source, 'lxml').find_all()
@@ -295,12 +295,12 @@ def find_influent_reviewer(all_reviews):
     return influent_reviewers
 
 
-#### Reviewer profile scraping
+
 def scrape_reviewer(reviewer):
     
     profile_url='https://www.tripadvisor.ca/Profile/'+reviewer
 
-    response = requests.get(profile_url) ## making a page request
+    response = requests.get(profile_url)
     print(response.status_code)
     soup_ = BeautifulSoup(response.content, 'html.parser').find_all()
     
@@ -338,7 +338,6 @@ def scrape_reviewer(reviewer):
 
 # 0 - create session and define Trip Advisor search URL
 session = requests.Session()
-
 search_url = 'https://www.tripadvisor.com/Restaurants-g188113-Zurich.html'
 
 
@@ -351,7 +350,6 @@ urls_df.to_csv('../data/urls.csv', index=False)
 print('...end')
 
 
-
 # 2 - Extract Restaurants info - convert to dataframe and save in csv file
 print('Start scraping restaurants infos...')
 df=pd.read_csv('../data/urls.csv')
@@ -360,16 +358,17 @@ restaurants_info=[]
 for i in tqdm(range(len(restaurants_urls))):
     restaurants_info.append(scrape_restaurant_details(restaurants_urls[i], session))
     restaurants_df=pd.DataFrame(restaurants_info)
-    restaurants_df.to_csv('../data/restaurants_complete_13.csv', index=False)
+    restaurants_df.to_csv('../data/restaurants_info.csv', index=False)
 print('...end')
 
 
-# 3 - Find influent reviewers
+# 3 - Find influent reviewers - convert to dataframe and save in csv file
 print('Find relevant reviewers...')
 t=[restaurant['influent_reviewers'] for restaurant in restaurants_info]
 flat_t = [item for sublist in t for item in sublist]
 influent_reviewers = set(flat_t)
 influent_reviewers=list(influent_reviewers)
+influent_reviewers.to_csv('../data/reviewers_ids.csv', index=False)
 print('...Done')
 print(len(influent_reviewers), ' influent reviewers found')
 
@@ -377,11 +376,11 @@ print(len(influent_reviewers), ' influent reviewers found')
 # 4 - extract reviews from influent reviewers - convert to dataframe and save in csv file
 print('Extract reviewers profiles...')
 reviewers_info=[]
-df=pd.read_csv('../data/English_influent_reviewers.csv')
+df=pd.read_csv('../data/reviewers_ids.csv')
 influent_reviewers=df['reviewer_name'].values.tolist()
 
 for j in tqdm(range(len(influent_reviewers))):
     reviewers_info.append(scrape_reviewer(influent_reviewers[j]))
     reviewers_df=pd.DataFrame(reviewers_info)
-    reviewers_df.to_csv('../data/reviewers_insights.csv', index=False)
+    reviewers_df.to_csv('../data/reviewers_info.csv', index=False)
 print('...Done')
