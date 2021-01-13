@@ -44,22 +44,24 @@ def get_user_popularity_vector(popularity_input,nb_reviews_scaler):
     
     popularity_values=[1000,500,100]
 
-    popularity_new=[]
-    for i in range(len(popularity_values)):
-        popularity_new_i=[]
-        if popularity_input[i]>1:
-            popularity_new_i=[]
-            for j in range(0,popularity_input[i]):
-                popularity_new_i.append(popularity_input[i])
-        elif popularity_input[i]==1:
-            popularity_new_i=[popularity_values[i]]
-        popularity_new.append(popularity_new_i)
     
     # set default value if user didn't enter anything
-    if popularity_values==[0,0,0]:
+    if popularity_input==[0,0,0]:
         popularity_new_flat=popularity_values
-              
-    popularity_new_flat = [item for sublist in popularity_new for item in sublist]
+
+    else: 
+        popularity_new=[]  
+        for i in range(len(popularity_values)):
+            popularity_new_i=[]
+            if popularity_input[i]>0:
+                popularity_new_i=[]
+                for j in range(0,popularity_input[i]):
+                    popularity_new_i.append(popularity_input[i])
+            elif popularity_input[i]==1:
+                popularity_new_i=[popularity_values[i]]
+            popularity_new.append(popularity_new_i)
+            popularity_new_flat = [item for sublist in popularity_new for item in sublist]
+    print('popularity_new_flat', popularity_new_flat)
     nb_reviews_new_mean=np.mean(popularity_new_flat)
     nb_reviews_new_mean=nb_reviews_scaler.transform(np.array(nb_reviews_new_mean).reshape(-1, 1))
 
@@ -192,61 +194,47 @@ def find_matching_cluster(metadata,X_num,X_cat_1,price_review_cluster_new,cuisin
 def sort_matching_restaurants(matching_restaurants, cuisine_countries_input, cuisine_countries):
     
     df_matching_restaurants=pd.DataFrame(matching_restaurants)
-    print('matching restaurants: ', df_matching_restaurants)
-
-    x = np.array(cuisine_countries_input)
-
-    favorite_cuisines_index=np.where(x > 0)[0]
-    print(favorite_cuisines_index)
     
+    sorted_cuisines = [[x,y] for x,y in sorted(zip(cuisine_countries_input,cuisine_countries), reverse=True)]
 
     favorite_cuisines=[]
-    if len(favorite_cuisines_index)>1:
-        for i in range(len(favorite_cuisines_index)):
-            favorite_cuisines.append(cuisine_countries[favorite_cuisines_index[i]])
-    else:
-        favorite_cuisines=[cuisine_countries[favorite_cuisines_index[0]]]
-
-    if len(favorite_cuisines)>1:
-        string_favorite_cuisines='|'.join(favorite_cuisines)
-    else:
-        string_favorite_cuisines=favorite_cuisines[0]
-    print('string_favorite_cuisines: ',string_favorite_cuisines)
-
-    df_final_list=df_matching_restaurants[df_matching_restaurants['cuisines'].str.contains(string_favorite_cuisines)]
-    #df_final_list=df_matching_restaurants[df_matching_restaurants['cuisines'].isin(favorite_cuisines)]
-    final_list_links=df_final_list['link'].values.tolist()
-    final_list_names=df_final_list['name'].values.tolist()
-    final_list_cuisines=df_final_list['cuisines'].values.tolist()
-
+    for i in range(len(sorted_cuisines)):
+        if sorted_cuisines[i][0]>0:
+            favorite_cuisines.append(sorted_cuisines[i][1])
+            
     final_list=[]
-    if len(final_list_links)>1:
-        for i in range(len(final_list_links)):
-            final_list.append({'link': final_list_links[i],
-                               'name': final_list_names[i],
-                               'cuisines': final_list_cuisines[i]})
-    else:
-        final_list=[{'link':final_list_links[0],
-                     'name': final_list_names[0],
-                     'cuisines': final_list_cuisines[0]}]
-    
-    # HERE: sort list with top cuisines score
-    sorted_cuisines = [x for _,x in sorted(zip(cuisine_countries_input,cuisine_countries), reverse=True)]
-    final_list.sort()
-    ## 
+    if len(favorite_cuisines)>0:
+        if len(favorite_cuisines)>1:
+            string_favorite_cuisines='|'.join(favorite_cuisines)
+        else:
+            string_favorite_cuisines=favorite_cuisines[0]
+        print('string_favorite_cuisines: ',string_favorite_cuisines)
 
-    if len(final_list)>1:
+        df_final_list=df_matching_restaurants[df_matching_restaurants['cuisines'].str.contains(string_favorite_cuisines)]
+        final_list_links=df_final_list['link'].values.tolist()
+        final_list_names=df_final_list['name'].values.tolist()
+        final_list_cuisines=df_final_list['cuisines'].values.tolist()
+
+        if len(final_list_links)>1:
+            for i in range(len(final_list_links)):
+                final_list.append({'link': final_list_links[i],
+                                'name': final_list_names[i],
+                                'cuisines': final_list_cuisines[i]})
+        elif len(final_list_links)>0:
+            final_list=[{'link':final_list_links[0],
+                        'name': final_list_names[0],
+                        'cuisines': final_list_cuisines[0]}]
+    
+    if len(final_list)>0:
         display_restaurants_1=final_list
         if len(final_list)>10:
             display_restaurants_1=final_list[:10]
-        return display_restaurants_1
-    
     else:
         if len(matching_restaurants)>10:
             display_restaurants_1=matching_restaurants[:10]
         else:
             display_restaurants_1=matching_restaurants
-    return display_restaurants_1
+    return display_restaurants_1, favorite_cuisines
 
     
 ################################## EXECUTION #######################################
@@ -274,11 +262,6 @@ def get_list(price_range_input,popularity_input,cuisine_countries_input):
                         'Mediterranean']
     cuisine_countries.sort()
 
-    #convert input to integer
-    cuisine_countries_input=[int(x) for x in cuisine_countries_input]
-    popularity_input=[int(x) for x in popularity_input]
-    price_range_input=[int(x) for x in price_range_input]
-
     #load metadata
     metadata=pd.read_csv('./app/data/metadata.csv')
 
@@ -303,6 +286,13 @@ def get_list(price_range_input,popularity_input,cuisine_countries_input):
 
     matching_restaurants=find_matching_cluster(metadata,X_num,X_cat_1,price_review_cluster_new,cuisine_countries_cluster_new,km_model_X_num,km_model_X_cat_1)
 
-    short_list=sort_matching_restaurants(matching_restaurants,cuisine_countries_input,cuisine_countries)
+    short_list, favorite_cuisines=sort_matching_restaurants(matching_restaurants,cuisine_countries_input,cuisine_countries)
 
-    return short_list, matching_restaurants
+    others_list=[]
+    for item in matching_restaurants:
+        if item not in short_list:
+            others_list.append(item)
+    if len(others_list)>10:
+         others_list= others_list[:10]
+
+    return short_list, others_list, favorite_cuisines

@@ -86,11 +86,33 @@
             </p>
         </form>
             <p>
-            <div id="results" class="list-group">
-                {% for item in best_matching_restaurants%}
-                <a href="{{item['link']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
-                {% endfor %}  
-            </div>
+                <div id="message1" class="messages">
+                    <h5>{{message_user_profile}}</h5>
+                </div>
+            </p>
+            <p>
+                <div id="message2" class="messages">
+                {{message_results_best}}
+                </div>
+            </p>
+            <p>
+                <div id="results1" class="list-group">
+                    {% for item in best_matching_restaurants%}
+                    <a href="{{item['link']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
+                    {% endfor %}  
+                </div>
+            </p>
+            <p>
+                <div id="message3" class="messages">
+                   {{message_results_others}}
+                </div>
+            </p>
+            <p>
+                <div id="results2" class="list-group">
+                    {% for item in other_restaurants%}
+                    <a href="{{item['link']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
+                    {% endfor %}  
+                </div>
             </p>
     </div>
     <!-- Optional JavaScript -->
@@ -108,7 +130,11 @@
       document.getElementById('progress').style.display='block';
     }
     function cleanResults() {
-        document.getElementById('results').innerHTML = "";
+        document.getElementById('results1').innerHTML = "";
+        document.getElementById('results2').innerHTML = "";
+        document.getElementById('message1').innerHTML = "";
+        document.getElementById('message2').innerHTML = "";
+        document.getElementById('message3').innerHTML = "";
     }
 
 </script>
@@ -121,7 +147,7 @@
       height: 100%;
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
+      background-size: 100% auto;
     }
     #header {
         background-image: url("https://cdn.pixabay.com/photo/2016/08/07/22/47/zurich-1577301_1280.jpg");
@@ -174,6 +200,11 @@
     }
 
     .list-group{
+        display: inline-block;
+    }
+    .messages {
+        background-color: rgba(71, 82, 71, 0.685);
+        color: whitesmoke;
         display: inline-block;
     }
     </style>
