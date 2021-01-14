@@ -21,6 +21,7 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 
 ### Modeling: Unsupervised learning
 
+![](/images/cluster_analysis.PNG)
 
 ### Productionization
 
