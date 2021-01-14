@@ -1,6 +1,6 @@
 # Recommendation System for Zurich Restaurants
 
-## Project Description
+## Project Overview
 
 A Recommendation System to find the restaurants in Zurich city that correspond you.
 
