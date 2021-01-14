@@ -138,7 +138,7 @@ df_restaurants['cuisines']=df_restaurants['cuisines'].apply(lambda x: clean_cuis
 df_restaurants.to_csv('restaurants_info_cleaned.csv', index=False)
 
 # extract reviewers ids
-df_restaurants=pr.read_csv('restaurants_info_cleaned.csv')
+df_restaurants=pd.read_csv('restaurants_info_cleaned.csv')
 reviews=df_restaurants['reviews'].values.tolist()
 reviewers=get_reviewers_ids(reviews)
 df_reviewers=pd.DataFrame(reviewers)
