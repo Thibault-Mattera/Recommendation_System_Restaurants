@@ -9,21 +9,35 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 - Build reviewer profiles: unsupervised learning
 - Create recommendation system: flask api and user interface
 
+### Data cleaning
 
-## How does it work?
+
+### Exploratory Data Analysis
+
+
+
+### Feature Engineering
+
+
+### Modeling: Unsupervised learning
+
+
+### Productionization
+
+This final step consisted in building a recommendation engine.
+I created a flask API connected to an HTML web-interface. 
+The API takes the user profile to propose him a personalized selection of restaurant based on his preferences.
+
+#### How does it work?
 
 First, you select criteria that define your "restaurant customer profile":
 - Cuisine style
 - Price range
 - Restaurant' popularity
+Your profile is compared to a database containing the Trip Advisor reviewers profiles.
+The system finds the profiles that are closest to yours and extract the most corresponding restaurants.
 
-Your profile is compared to a database containing different types of profile.
-Each one corresponds to a specific cluster of Trip Advisor reviewers.
-
-The system find the profiles that are closest yours and extract the restaurants these profiles have the most visited.
-
-
-## Try it!
+#### Try it!
 
 1. Clone repo locally
 
