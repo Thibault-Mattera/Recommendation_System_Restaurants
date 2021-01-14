@@ -23,6 +23,8 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 
 ![](/images/clusters_analysis.PNG){:height="36px" width="36px"}.
 
+<img src="images/clusters_analysis.PNG" width="100" height="100">
+
 ### Productionization
 
 This final step consisted in building a recommendation engine.
