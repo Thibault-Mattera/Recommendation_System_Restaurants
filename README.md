@@ -1,4 +1,4 @@
-# Recommendation System for Zurich Restaurants
+# Recommendation System for Restaurants in Zurich
 
 ## Project Overview
 
