@@ -23,7 +23,7 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 
 ![](/images/clusters_analysis.PNG){:height="36px" width="36px"}.
 
-<img src="images/clusters_analysis.PNG" width="100" height="100">
+<img src="images/clusters_analysis.PNG" width="200" height="200">
 
 ### Productionization
 
