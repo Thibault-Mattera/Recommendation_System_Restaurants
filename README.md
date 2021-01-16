@@ -40,6 +40,10 @@ I looked at the correlation
 
 With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying their correlations.
 
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![](/images/correlation1.PNG)  |  ![](/images/correlation2.PNG)
+
 ![correlation1](/images/correlation1.PNG) ![correlation1](/images/correlation2.PNG)
 
 
