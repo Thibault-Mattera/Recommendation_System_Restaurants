@@ -34,15 +34,15 @@ I looked at the correlation
 
 ### Exploratory Data Analysis
 
-
-
-### Feature Engineering
-
 With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying their correlations.
 
 Correlations between European cuisines            |  Correlations between Asian cuisines   
 :-------------------------:|:-------------------------:
 ![](/images/correlation1_resized.PNG)  |  ![](/images/correlation2.PNG)
+
+
+Also, I found interested to analyze the correlations between prices and cuisines.
+
 
 
 ### Modeling: Unsupervised learning
