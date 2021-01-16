@@ -42,7 +42,7 @@ With a high number of categorical variables (over 150 types of cuisine and speci
 
 Correlations between European cuisines            |  Correlations between Asian cuisines   
 :-------------------------:|:-------------------------:
-![](/images/correlation1.PNG)  |  ![](/images/correlation2.PNG)
+![](/images/correlation1_resized.PNG)  |  ![](/images/correlation2.PNG)
 
 
 ### Modeling: Unsupervised learning
