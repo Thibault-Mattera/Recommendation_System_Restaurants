@@ -64,6 +64,7 @@ We can see below 4 main profiles of restaurants' customers:
 
 ![](/images/clusters_resized.png)
 
+<img src="/images/clusters.png" width="48">
 
 ## Productionization
 
