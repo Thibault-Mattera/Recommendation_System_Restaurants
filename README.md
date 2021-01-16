@@ -54,7 +54,15 @@ The approach to reduce the number of categorical among the cuisine countries was
 
 ## Modeling: Unsupervised learning
 
-![](/images/clusters.PNG)
+After trying different clustering methods, I concluded that K-Means provided satisfying results.
+
+We can see below 4 main profiles of restaurants' customers:
+- Cluster A: the ones that prefer Asian food rather than local Swiss cuisine
+- Cluster B: the fans of Italian cuisine
+- Cluster C: going everywhere
+- Cluster D: the ones loyal to Swiss restaurants
+
+![](/images/clusters.png)
 
 
 ## Productionization
