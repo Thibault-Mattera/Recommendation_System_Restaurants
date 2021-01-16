@@ -54,7 +54,7 @@ The approach to reduce the number of categorical among the cuisine countries was
 
 ## Modeling: Unsupervised learning
 
-![](/images/clusters_analysis.PNG)
+![](/images/clusters.PNG)
 
 
 ## Productionization
