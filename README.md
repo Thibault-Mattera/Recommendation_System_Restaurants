@@ -42,19 +42,28 @@ Also, I found interested to analyze the correlations between prices and cuisines
 
 ## Cleaning, preprocessing & feature engineering
 
-I looked at the correlation
+First, when analyzing the categorical variables (, I created new columns:
+- cuisines regions (refering to a region)
+- cuisine style (refering to a type of served food: 'Pizza', 'Street Food',...)
+- specific criteria ('Accept credit cards', 'Outdoor Seating', 'Vegatarian Friendly'...)
 
-### Modeling: Unsupervised learning
+The approach to reduce the number of categorical among the cuisine countries was to:
+- remove the too "general" categories that hide the relevant information  (example: "European", "International")
+- assign the categories containing very low number of restaurant to a global one (example: "Peruvian", "Chilean" to a global region "South American")
+
+
+## Modeling: Unsupervised learning
 
 ![](/images/clusters_analysis.PNG)
 
-### Productionization
+
+## Productionization
 
 This final step consisted in building a recommendation engine.
 I created a flask API connected to an HTML web-interface. 
 The API takes the user profile to propose him a personalized selection of restaurant based on his preferences.
 
-#### How does it work?
+### How does it work?
 
 First, you select criteria that define your "restaurant customer profile":
 - Cuisine style
@@ -63,7 +72,7 @@ First, you select criteria that define your "restaurant customer profile":
 Your profile is compared to a database containing the Trip Advisor reviewers profiles.
 The system finds the profiles that are closest to yours and extract the most corresponding restaurants.
 
-#### Try it!
+### Try it!
 
 1. Clone repo locally
 
