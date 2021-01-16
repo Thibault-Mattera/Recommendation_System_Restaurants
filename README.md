@@ -42,7 +42,7 @@ Correlations between European cuisines            |  Correlations between Asian 
 
 Also, I found interested to analyze the correlations between prices and cuisines.
 
-![](/images/price_cuisine_corr.png 'Average prices of cuisines')
+![](/images/price_cuisine_corr.png)
 
 
 ### Modeling: Unsupervised learning
