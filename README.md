@@ -28,7 +28,7 @@ In complement, I scraped reviewers' profiles:
 - number of helpful votes
 - joining date on TripAdvisor
 
-### Exploratory Data Analysis
+## Exploratory Data Analysis
 
 With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying their correlations.
 
