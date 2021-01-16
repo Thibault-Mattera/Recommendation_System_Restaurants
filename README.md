@@ -62,7 +62,7 @@ We can see below 4 main profiles of restaurants' customers:
 - Cluster C: going everywhere
 - Cluster D: the ones loyal to Swiss restaurants
 
-![](/images/clusters.png)
+![](/images/clusters_resized.png)
 
 
 ## Productionization
