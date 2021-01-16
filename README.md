@@ -30,14 +30,18 @@ In complement, I scraped reviewers' profiles:
 
 ### Data cleaning
 
-
+I looked at the correlation
 
 ### Exploratory Data Analysis
 
 
 
-
 ### Feature Engineering
+
+With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying there intra correlation.
+
+
+I extracted 
 
 
 ### Modeling: Unsupervised learning
