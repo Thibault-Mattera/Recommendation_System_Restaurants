@@ -9,10 +9,31 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 - Build reviewer profiles: unsupervised learning
 - Create recommendation system: flask api and user interface
 
+### Data gathering: web scraping
+
+As, the first step of the project, I scraped aroud 1800 restaurants from TripAdvisor.
+For each restaurant, we extract the following information:
+- Restaurant's URL
+- Restaurant's title
+- Price range & category ($ symbol)
+- Cuisines
+- Special diets
+- Location
+- Number of reviews
+- Reviews (reviewer name, quote, body, date, helpful vote)
+
+In complement, I scraped reviewers' profiles:
+- reviewer's location
+- reviewer's contribution (number of posted reviews)
+- number of helpful votes
+- joining date on TripAdvisor
+
 ### Data cleaning
 
 
+
 ### Exploratory Data Analysis
+
 
 
 
