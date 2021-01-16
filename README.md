@@ -76,8 +76,9 @@ First, you select criteria that define your "restaurant customer profile":
 - Cuisine style
 - Price range
 - Restaurant' popularity
-Your profile is compared to a database containing the Trip Advisor reviewers profiles.
-The system finds the profiles that are closest to yours and extract the most corresponding restaurants.
+
+Your profile is compared to the database containing the Trip Advisor reviewers' profiles.
+The system finds the profiles that are closest to yours and extract the corresponding restaurants.
 
 ### Try it!
 
