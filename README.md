@@ -38,10 +38,10 @@ I looked at the correlation
 
 ### Feature Engineering
 
-With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying there intra correlation.
+With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying their correlations.
 
+![correlation1](/images/correlation1.PNG) ![correlation1](/images/correlation2.PNG)
 
-I extracted 
 
 
 ### Modeling: Unsupervised learning
