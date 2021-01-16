@@ -9,7 +9,7 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 - Build reviewer profiles: unsupervised learning
 - Create recommendation system: flask api and user interface
 
-### Data gathering: web scraping
+## Data gathering: web scraping
 
 As, the first step of the project, I scraped aroud 1800 restaurants from TripAdvisor.
 For each restaurant, we extract the following information:
@@ -28,10 +28,6 @@ In complement, I scraped reviewers' profiles:
 - number of helpful votes
 - joining date on TripAdvisor
 
-### Data cleaning
-
-I looked at the correlation
-
 ### Exploratory Data Analysis
 
 With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying their correlations.
@@ -44,6 +40,9 @@ Also, I found interested to analyze the correlations between prices and cuisines
 
 ![](/images/price_cuisine_corr.png)
 
+## Cleaning, preprocessing & feature engineering
+
+I looked at the correlation
 
 ### Modeling: Unsupervised learning
 
