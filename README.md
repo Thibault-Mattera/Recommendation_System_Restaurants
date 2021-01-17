@@ -11,7 +11,7 @@ A Recommendation System to find the restaurants in Zurich city that correspond y
 
 ## Data gathering: web scraping
 
-As, the first step of the project, I scraped aroud 1800 restaurants from TripAdvisor.
+As, the first step of the project, I scraped around 1800 restaurants from TripAdvisor.
 For each restaurant, we extract the following information:
 - Restaurant's URL
 - Restaurant's title
@@ -83,9 +83,7 @@ The system finds the profiles that are closest to yours and extract the correspo
 ### Try it!
 
 1. Clone repo locally
-
 2. Create virtual environment & activate it
-
 3. Install librairies & set flask config
 
 pip install -r requirements.txt
