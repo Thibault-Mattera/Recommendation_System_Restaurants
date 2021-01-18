@@ -70,13 +70,13 @@ This final step consisted in building a recommendation engine.
 I created a flask API connected to an HTML web-interface. 
 The API takes the user profile to propose him a personalized selection of restaurant based on his preferences.
 
-### How does it work?
+![](/images/screenshot_updated.png)
 
+The concept is simple and intuitive.
 First, you select criteria that define your "restaurant customer profile":
 - Cuisine style
 - Price range
 - Popularity (number of reviews)
-
 Your profile is compared to the database containing the Trip Advisor reviewers' profiles.
 The system finds the profiles that are closest to yours and extract the corresponding restaurants.
 
