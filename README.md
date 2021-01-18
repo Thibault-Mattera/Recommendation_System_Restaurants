@@ -75,7 +75,7 @@ The API takes the user profile to propose him a personalized selection of restau
 First, you select criteria that define your "restaurant customer profile":
 - Cuisine style
 - Price range
-- Restaurant' popularity
+- Popularity (number of reviews)
 
 Your profile is compared to the database containing the Trip Advisor reviewers' profiles.
 The system finds the profiles that are closest to yours and extract the corresponding restaurants.
