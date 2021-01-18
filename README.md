@@ -2,12 +2,14 @@
 
 ## Project Overview
 
-A Recommendation System to find the restaurants in Zurich city that correspond you.
+In a world where the large commercial offer is overwhelming us, online reviews have a significant impact on customers' decision.
 
-3 phasis in this project:
-- Gather the data: scraping Trip Advisor data of all restaurants in Zurich (restaurants info, reviews, reviewer profiles)
-- Build reviewer profiles: unsupervised learning
-- Create recommendation system: flask api and user interface
+This project consisted in creating a tool that proposes a personalized list of restaurants based on users profiles.
+The different steps:
+- Scraped around 1800 restaurants and 1900 reviewers' from TripAdvisor using Python and Selenium
+- Engineered features from restaurants' description to extract usable information (type of cuisine, price range and popularity)
+- Built profiles' clusters based on an unspervised learning algorithm (K-means)
+- Productionized the solution: created a web-app connected to a Flask API
 
 ## Data gathering: web scraping
 
