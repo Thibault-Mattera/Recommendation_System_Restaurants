@@ -85,16 +85,6 @@ The system finds the profiles that are closest to yours and extract the correspo
 1. Clone repo locally
 2. Create virtual environment & activate it
 3. Install librairies & set flask config
-
-pip install -r requirements.txt
-
-export FLASK_APP=recom_engine.py
-
-4. Run flask webapp
-
-flask run
-
-5. Go to your localhost to access webapp:
-
-http://127.0.0.1:5000/
+4. Run flask webapp (command flask run)
+5. Go to your localhost to access webapp
 
