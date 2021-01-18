@@ -70,7 +70,7 @@ This final step consisted in building a recommendation engine.
 I created a flask API connected to an HTML web-interface. 
 The API takes the user profile to propose him a personalized selection of restaurant based on his preferences.
 
-<img src="/images/Screenshot_updated.PNG" width="700">
+<img src="/images/Screenshot_updated.PNG" width="900">
 
 The concept is simple and intuitive.
 First, you select criteria that define your "restaurant customer profile":
