@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 import pickle
@@ -42,66 +41,27 @@ def mean_price_ranges_int(int_ranges):
 
 def get_user_popularity_vector(popularity_input,nb_reviews_scaler):
     
-    popularity_values=[1000,500,100]
-
-    
-    # set default value if user didn't enter anything
-    if popularity_input==[0,0,0]:
-        popularity_new_flat=popularity_values
-
-    else: 
-        popularity_new=[]  
-        for i in range(len(popularity_values)):
-            popularity_new_i=[]
-            if popularity_input[i]>0:
-                popularity_new_i=[]
-                for j in range(0,popularity_input[i]):
-                    popularity_new_i.append(popularity_input[i])
-            elif popularity_input[i]==1:
-                popularity_new_i=[popularity_values[i]]
-            popularity_new.append(popularity_new_i)
-            popularity_new_flat = [item for sublist in popularity_new for item in sublist]
-    print('popularity_new_flat', popularity_new_flat)
-    nb_reviews_new_mean=np.mean(popularity_new_flat)
-    nb_reviews_new_mean=nb_reviews_scaler.transform(np.array(nb_reviews_new_mean).reshape(-1, 1))
+    nb_reviews_new_mean=nb_reviews_scaler.transform(np.array(popularity_input).reshape(-1, 1))
 
     return nb_reviews_new_mean
 
 
 def get_user_price_range_vector(price_range_input,price_scaler):
     
-    price_range_values=[[10,30],[30,50],[50,100]]
-    
-    price_range_new=[]
-    for i in range(len(price_range_values)):
-        price_range_new_i=[]
-        if price_range_input[i]>1:
-            for j in range(0,price_range_input[i]):
-                price_range_new_i.append(price_range_values[i])
-        elif price_range_input[i]==1:
-            price_range_new_i=[price_range_values[i]]  
-        price_range_new.append(price_range_new_i)
-    price_range_new_flat = [item for sublist in price_range_new for item in sublist]
-
-    # set default value if user didn't enter anything
-    if price_range_input==[0,0,0]:
-        price_range_new_flat=price_range_values
-
-    price_range_new_mean=mean_price_ranges_int(price_range_new_flat)
-    price_range_new_mean=price_scaler.transform(np.mean(price_range_new_mean).reshape(-1, 1))
+    price_range_new_mean=price_scaler.transform(np.mean(price_range_input).reshape(-1, 1))
 
     return price_range_new_mean
 
 
 def get_user_price_review_cluster(price_range_input, popularity_input, km_model_X_num ,price_scaler ,nb_reviews_scaler):
     
-    price_range_new_mean=get_user_price_range_vector(price_range_input,price_scaler)
-    nb_reviews_new_mean=get_user_popularity_vector(popularity_input,nb_reviews_scaler)
+    price_range_input_mean=get_user_price_range_vector(price_range_input,price_scaler)
+    popularity_input_mean=get_user_popularity_vector(popularity_input,nb_reviews_scaler)
 
-    print('price_range_new_mean ',price_range_new_mean)
-    print('nb_reviews_new_mean ',nb_reviews_new_mean)
-    X_num_new=np.array([[price_range_new_mean[0][0],nb_reviews_new_mean[0][0]]])
-
+    print('price_range_new_mean ',price_range_input_mean)
+    print('nb_reviews_new_mean ',popularity_input_mean)
+    X_num_new=np.array([[price_range_input_mean[0][0],popularity_input_mean[0][0]]])
+    print('X_num_new ', X_num_new)
     price_review_cluster_new=km_model_X_num.predict(X_num_new)[0]
 
     return price_review_cluster_new
@@ -128,7 +88,7 @@ def get_cuisine_countries_cluster(cuisine_countries_input,km_model_X_cat_1, cuis
 
     print(X_cat_1_new)
     cuisine_countries_cluster_new=km_model_X_cat_1.predict(X_cat_1_new)[0]
-
+    print('cuisine_countries_cluster_new: ', cuisine_countries_cluster_new)
     return cuisine_countries_cluster_new
 
 
@@ -143,7 +103,7 @@ def find_matching_cluster(metadata,X_num,X_cat_1,price_review_cluster_new,cuisin
 
     X_num_matching=X_num[matching_index]
     X_cat_1_matching=X_cat_1[matching_index]
-    
+
     # Find reviewers that are closest to cluster center
     closest_price_review, _ = pairwise_distances_argmin_min(km_model_X_num.cluster_centers_, X_num_matching)
     closest_price_review_record=closest_price_review[price_review_cluster_new]
@@ -251,15 +211,12 @@ def get_list(price_range_input,popularity_input,cuisine_countries_input):
                         'Swiss',
                         'Japanese',
                         'Thai',
-                        'Chinese/Korean',
-                        'Pacific Islands',
+                        'Chinese',
                         'South American',
-                        'British',
                         'Vietnamese',
                         'Spanish',
                         'German',
-                        'Italian',
-                        'Mediterranean']
+                        'Italian']
     cuisine_countries.sort()
 
     #load metadata

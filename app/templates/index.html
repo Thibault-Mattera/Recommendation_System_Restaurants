@@ -25,57 +25,37 @@
                     <!-- For loop logic of jinja template -->
                     {% for item in cuisine_countries%}    
                         <li>{{item}}
-                            <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                            name={{item}}>
-                            <output>0</output>
+                        <label class="switch">
+                                <input type="checkbox" name={{item}}>
+                                <span class="sliderswitch"></span>
+                            </label>
                         </li> 
                     {% endfor %}         
                 </ul>
             </p>
             <p><h5><b>Select a price range menu</b></h5><img src="https://icon-library.com/images/dolar-icon/dolar-icon-18.jpg" width="35px"></p>
-
-                <div class="slidecontainer">
-                    <p>Cheap (between 10 to 30 CHF)
-                    <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                    name='Cheap'>
-                    <output>0</output>
+                <p>
+            <div class="slidecontainer">
+                    <p  style="font-weight: bold;">
+                    <input type="range" name="price" min="10" max="100" value="20" step="10" class="slider" style="width:25%;" oninput="this.nextElementSibling.value = this.value">
+                    <output>20</output>
+                    CHF
                     </p>
-                    <p>Middle Range (between 30 and 50 CHF)
-                        <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                        name='Middle Range'>
-                        <output>0</output>
-                    </p>
-                    <p>Gastronomic (above 50 CHF)
-                        <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                        name='Gastronomic'>
-                        <output>0</output>
-                    </p>
+                </p>
                 </div>
             <br>
             <p><h5><b>Select a popularity range</b></h5><img src="https://www.flaticon.com/svg/static/icons/svg/1685/1685316.svg" width="35px"></p>
-
-                <div class="slidecontainer">
-                    <p>Mainstream (1000 reviews in average)
-                    <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                    name='Mainstream'>
-                    <output>0</output>
-                    </p>
-                    <p>Medium (500 reviews in average)
-                        <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                        name='Medium'>
-                        <output>0</output>
-                    </p>
-                    <p>Promising discovery (100 reviews in average)
-                        <input type="range" min="0" max="3" value="0" class="slider" oninput="this.nextElementSibling.value = this.value"
-                        name='Promising discovery'>
-                        <output>0</output>
+            <div class="slidecontainer">
+                <p  style="font-weight: bold;">
+                <input type="range" name="popularity" min="100" max="1000" value="300" step="100" class="slider" style="width:25%;" oninput="this.nextElementSibling.value = this.value">
+                <output>300</output>
+                reviews
+                </p>
+            </p> 
                     </p>
                 </div>
             </div>
             <br style="background-color: none;">
-            <div id="preferences">
-                <p>0: never go | 1: occasionaly go | 2: often go | 3: always go</p>
-            </div>
             <p>
                 <input type="reset" value="Reset" onclick="cleanResults()">
                 <div id="validation">
@@ -120,12 +100,26 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     </div>  
     </body>
 </html>
 
 <script>
+    var switches = document.querySelectorAll('.switch');
 
+    switches.forEach(function(item){
+    item.addEventListener('change', function(){
+        var checkbox = this.querySelector('input'),
+            data = checkbox.dataset;
+
+        checkbox.value = checkbox.checked ? data.on : data.off;
+    });
+    });
+    function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }
     function showSubmitted() {
       document.getElementById('progress').style.display='block';
     }
@@ -170,13 +164,7 @@
       color: white;
       margin-top: 5px;
     }
-
-    #preferences {
-        display: inline-block;
-        color: rgba(228, 228, 228, 0.705);
-        -webkit-text-stroke: 0.4px black;
-    }
-
+    
     #userform {
         margin-top: 25px;
         display: inline-block;
@@ -207,4 +195,58 @@
         color: whitesmoke;
         display: inline-block;
     }
+
+    .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 23px;
+    }
+
+    .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+
+    .sliderswitch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 24px;
+    }
+
+    .sliderswitch:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+    }
+
+    input:checked + .sliderswitch {
+    background-color: #2196F3;
+    }
+
+    input:focus + .sliderswitch {
+    box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .sliderswitch:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    }
+
     </style>
