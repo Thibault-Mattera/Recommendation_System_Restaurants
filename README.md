@@ -15,8 +15,8 @@ The different steps:
 
 As, the first step of the project, I scraped around 1800 restaurants from TripAdvisor.
 For each restaurant, we extract the following information:
-- Restaurant's URL
-- Restaurant's title
+- URL
+- Title
 - Price range & category ($ symbol)
 - Cuisines
 - Special diets
