@@ -85,5 +85,5 @@ The system finds the profiles that are closest to yours and extract the correspo
 2. Create virtual environment & activate it
 3. Install librairies & set flask config
 4. Run flask webapp (command flask run)
-5. Go to your localhost to access webapp
+5. Go to your server localhost to access webapp
 
