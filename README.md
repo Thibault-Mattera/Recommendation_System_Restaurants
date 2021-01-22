@@ -82,8 +82,17 @@ The system finds the profiles that are closest to yours and extract the correspo
 ### Try it!
 
 1. Clone repo locally
-2. Create virtual environment & activate it
-3. Install librairies & set flask config
-4. Run flask webapp (command flask run)
-5. Go to your server localhost to access webapp
+2. Create virtual environment 
+Check if you have virtualenv:  
+virtualenv --version  
+If you don't, install it with:  
+pip install virtualenv  
+Create virtual environment "my_env":  
+python -m venv my_env  
+3. activate it:  
+.\my_env\Scripts\activate.ps1  
+4. Install librairies & set flask config  
+pip install -r requirements.txt  
+5. Run flask webapp (command flask run)  
+6. Go to your server localhost to access webapp
 
