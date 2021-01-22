@@ -89,13 +89,16 @@ If you don't, install it with:
 *pip install virtualenv*  
 Create a virtual environment "my_env":  
 *python -m venv my_env*  
-3. activate it:  
+3. activate it (Python 3.8):  
 *.\my_env\Scripts\activate.ps1*   
 Note: if you are using Visual Studio code, you might need to run before:  
 *Set-ExecutionPolicy Unrestricted -Scope Process*
 4. Make sure you are using the upgrated pip version and install librairies   
 *python -m pip install --upgrade pip*  
 *pip install -r requirements.txt*  
-5. Run flask webapp (command flask run)  
-6. Go to your server localhost to access webapp
+5. Run flask webapp:  
+*flask run*  
+6. Go to your server localhost to access webapp:  
+*http://127.0.0.1:5000/*
+
 
