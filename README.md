@@ -86,8 +86,8 @@ The system finds the profiles that are closest to yours and extract the correspo
 Check if you have virtualenv:  
 *virtualenv --version*  
 If you don't, install it with:  
-*pip install virtualenv* 
-Create virtual environment "my_env":  
+*pip install virtualenv*  
+Create a virtual environment "my_env":  
 *python -m venv my_env*  
 3. activate it:  
 .\my_env\Scripts\activate.ps1  
