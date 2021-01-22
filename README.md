@@ -91,7 +91,7 @@ Create a virtual environment "my_env":
 *python -m venv my_env*  
 3. activate it:  
 *.\my_env\Scripts\activate.ps1*   
-If you are using Visual Studio code, you might need to rung before:  
+Note: if you are using Visual Studio code, you might need to run before:  
 *Set-ExecutionPolicy Unrestricted -Scope Process*
 4. Install librairies & set flask config  
 *pip install -r requirements.txt*  
