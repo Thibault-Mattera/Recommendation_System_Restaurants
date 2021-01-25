@@ -81,6 +81,8 @@ The system finds the profiles that are closest to yours and extract the correspo
 
 ### Try it!
 
+Access the WebApp directly here.
+
 1. Clone repo locally
 2. Create virtual environment 
 Check if you have virtualenv:  
