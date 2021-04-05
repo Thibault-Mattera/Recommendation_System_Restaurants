@@ -24,30 +24,33 @@
                 <ul> 
                     <!-- For loop logic of jinja template -->
                     {% for item in cuisine_countries%}    
-                        <li>{{item}}
-                        <label class="switch">
-                                <input type="checkbox" name={{item}}>
-                                <span class="sliderswitch"></span>
+                        <li>
+                        <label class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name={{item}}>
+                            <label class="form-check-label" for="flexCheckDefault">
+                            {{item}}
                             </label>
                         </li> 
                     {% endfor %}         
                 </ul>
             </p>
-            <p><h5><b>Select a price range menu</b></h5><img src="https://icon-library.com/images/dolar-icon/dolar-icon-18.jpg" width="35px"></p>
-                <p>
+            <p>
+                <h5><b>Select your maximum budget</b></h5><img src="https://icon-library.com/images/dolar-icon/dolar-icon-18.jpg" width="35px"></p>
+            <p>
+        
             <div class="slidecontainer">
                     <p  style="font-weight: bold;">
-                    <input type="range" name="price" min="10" max="100" value="20" step="10" class="slider" style="width:25%;" oninput="this.nextElementSibling.value = this.value">
+                    <input type="range" name="price" min="10" max="90" value="20" step="10" class="slider" oninput="this.nextElementSibling.value = this.value">
                     <output>20</output>
                     CHF
                     </p>
                 </p>
                 </div>
             <br>
-            <p><h5><b>Select a popularity range</b></h5><img src="https://www.flaticon.com/svg/static/icons/svg/1685/1685316.svg" width="35px"></p>
+            <p><h5><b>Select the minimum number of reviews</b></h5><img src="https://www.flaticon.com/svg/static/icons/svg/1685/1685316.svg" width="35px"></p>
             <div class="slidecontainer">
                 <p  style="font-weight: bold;">
-                <input type="range" name="popularity" min="100" max="1000" value="300" step="100" class="slider" style="width:25%;" oninput="this.nextElementSibling.value = this.value">
+                <input type="range" name="popularity" min="100" max="900" value="300" step="100" class="slider" oninput="this.nextElementSibling.value = this.value">
                 <output>300</output>
                 reviews
                 </p>
@@ -78,7 +81,7 @@
             <p>
                 <div id="results1" class="list-group">
                     {% for item in best_matching_restaurants%}
-                    <a href="{{item['link']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
+                    <a href="{{item['url']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
                     {% endfor %}  
                 </div>
             </p>
@@ -90,7 +93,7 @@
             <p>
                 <div id="results2" class="list-group">
                     {% for item in other_restaurants%}
-                    <a href="{{item['link']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
+                    <a href="{{item['url']}}" class="list-group-item list-group-item-action" target="_blank">{{item['name']}}</a>
                     {% endfor %}  
                 </div>
             </p>
@@ -101,7 +104,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     </div>  
     </body>
 </html>
@@ -194,59 +197,6 @@
         background-color: rgba(71, 82, 71, 0.685);
         color: whitesmoke;
         display: inline-block;
-    }
-
-    .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 23px;
-    }
-
-    .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-    }
-
-    .sliderswitch {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 24px;
-    }
-
-    .sliderswitch:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%;
-    }
-
-    input:checked + .sliderswitch {
-    background-color: #2196F3;
-    }
-
-    input:focus + .sliderswitch {
-    box-shadow: 0 0 1px #2196F3;
-    }
-
-    input:checked + .sliderswitch:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
     }
 
     </style>
