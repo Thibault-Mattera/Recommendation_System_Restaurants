@@ -96,8 +96,6 @@ Create a virtual environment "my_env":
 *python -m venv my_env*  
 3. activate it (Python 3.8):  
 *.\my_env\Scripts\activate.ps1*   
-Note: if you are using Visual Studio code, you might need to run before:  
-*Set-ExecutionPolicy Unrestricted -Scope Process*
 4. Make sure you are using the upgrated pip version and install librairies   
 *python -m pip install --upgrade pip*  
 *pip install -r requirements.txt*  
