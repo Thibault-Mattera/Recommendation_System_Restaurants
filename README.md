@@ -1,6 +1,6 @@
 # Recommendation System for Restaurants in Zurich
 
-## Project Overview
+## Project overview
 
 In a world where the large commercial offer is overwhelming us, online reviews have a significant impact on customers' decision.
 
@@ -11,7 +11,14 @@ The different steps:
 - Built profiles' clusters based on an unspervised learning algorithm (K-means)
 - Productionized the solution: created a Python Flask web-app: [Click here to try it!](https://tmattera.pythonanywhere.com/)
 
-## Table of contents
+## Project content
+
+Content of the repositories:    
+- App: Flask web-app (recommendation system)
+  * app.py: Python file to run the app. 
+  * data: contains the data from TripAdvisor scraping to build 
+  * models: contains  
+
 
 
 ## Data gathering: web scraping
