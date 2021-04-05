@@ -11,6 +11,9 @@ The different steps:
 - Built profiles' clusters based on an unspervised learning algorithm (K-means)
 - Productionized the solution: created a Python Flask web-app: [Click here to try it!](https://tmattera.pythonanywhere.com/)
 
+## Table of contents
+
+
 ## Data gathering: web scraping
 
 As, the first step of the project, I scraped around 1800 restaurants from TripAdvisor.
