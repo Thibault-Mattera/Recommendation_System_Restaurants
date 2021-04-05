@@ -9,7 +9,7 @@ The different steps:
 - Scraped around 1800 restaurants and 1900 reviewers' profiles from TripAdvisor using Python and Selenium
 - Engineered features from restaurants' description to extract usable information (type of cuisine, price range and popularity)
 - Built profiles' clusters based on an unspervised learning algorithm (K-means)
-- Productionized the solution: created a web-app connected to a Flask API: [Click here to try it!](https://tmattera.pythonanywhere.com/)
+- Productionized the solution: created a Python Flask web-app: [Click here to try it!](https://tmattera.pythonanywhere.com/)
 
 ## Data gathering: web scraping
 
