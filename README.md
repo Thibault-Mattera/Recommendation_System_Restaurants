@@ -14,11 +14,18 @@ The different steps:
 ## Project content
 
 Content of the repositories:    
-- App: Flask web-app (recommendation system)
-  * app.py: Python file to run the app. 
-  * data: contains the data from TripAdvisor scraping to build 
-  * models: contains  
-
+- *app*: Flask web-app (recommendation system)
+  * app.py: Python file to run the web app. 
+  * data: scraped data from TripAdvisor (csv file) used then to build a database  
+  * models: all files related to the pretrained clustering model
+  * src: Python files for the back-end (functions and database)
+  * templates: html file for the web-app interface (front-end)
+- *scripts*: Python files to prepare the model.
+  * scraper.py: scrapes the data from TripAdvisor. 
+  * data_cleaning.py: cleans the raw csv file from scraping. 
+  * eda_restaurants.py: exploratory data analysis about the restaurants in Zurich. 
+  * preprocessing_features_engineer.py: re-aranges data to give features (cuisines type) to reviewers.  
+  * clustering.py: model to cluster the reviewers.  
 
 
 ## Data gathering: web scraping
