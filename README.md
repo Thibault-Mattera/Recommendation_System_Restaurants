@@ -20,7 +20,7 @@ Content of the repositories:
   * models: all files related to the pretrained clustering model
   * src: Python files for the back-end (functions and database)
   * templates: html file for the web-app interface (front-end)
-- **scripts**: Python files to prepare the model.
+- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts): Python files to prepare the model.
   * scraper.py: scrapes the data from TripAdvisor. 
   * data_cleaning.py: cleans the raw csv file from scraping. 
   * eda_restaurants.py: exploratory data analysis about the restaurants in Zurich. 
