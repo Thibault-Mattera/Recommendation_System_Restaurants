@@ -101,7 +101,7 @@ The system finds the profiles that are closest to yours and extract the correspo
 Access the web-app directly [here](https://tmattera.pythonanywhere.com/)
 
 1. Clone repo locally.  
-*git clone https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants.git* 
+*git clone https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app* 
 2. Create virtual environment 
 Check if you have virtualenv:  
 *virtualenv --version*  
@@ -115,8 +115,8 @@ Create a virtual environment "my_env":
 *python -m pip install --upgrade pip*  
 *pip install -r requirements.txt*  
 5. Run flask webapp:  
-*flask run*  
-6. Go to your server localhost to access webapp:  
+*python app.py*  
+6. Go to your server localhost to access the web-app:  
 *http://127.0.0.1:5000/*
 
 
