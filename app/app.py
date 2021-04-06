@@ -2,13 +2,10 @@
 # coding: utf-8
 
 from flask import Flask, jsonify, render_template, request
-import functions as functions
+from src import functions as functions
 import time
-import math
-#from database import Restaurant
 
 app = Flask(__name__)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -29,7 +26,6 @@ def index():
                        'Thai',
                        'Vietnamese']
 
-    user='Thibault'
     price_range_input=[]
     popularity_input=[]
     cuisine_regions_input=[]
@@ -67,7 +63,7 @@ def index():
         message_results_best='Best restaurant(s) for you: '
         message_results_others='You might also like: '
    
-    return render_template('index.html', user=user, cuisine_countries=cuisine_regions_list, best_matching_restaurants=best_matching_restaurants, 
+    return render_template('index.html', cuisine_countries=cuisine_regions_list, best_matching_restaurants=best_matching_restaurants, 
                                          other_restaurants=other_restaurants, message_user_profile=message_user_profile, 
                                          message_results_best=message_results_best, message_results_others=message_results_others)
 
