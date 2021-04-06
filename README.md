@@ -14,7 +14,7 @@ The different steps:
 ## Project content
 
 Content of the repositories:    
-- **app**: Flask web-app (recommendation system)
+- [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app): Flask web-app (recommendation system)
   * app.py: Python file to run the web app. 
   * data: scraped data from TripAdvisor (csv file) used then to build a database  
   * models: all files related to the pretrained clustering model
