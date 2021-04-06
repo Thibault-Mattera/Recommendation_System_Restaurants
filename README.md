@@ -107,10 +107,14 @@ Check if you have virtualenv:
 *virtualenv --version*  
 If you don't, install it with:  
 *pip install virtualenv*  
-Create a virtual environment "my_env":  
+Create a virtual environment "my_env": 
 *python -m venv my_env*  
+On mac:  
+*virtualenv my_venv*  
 3. activate it (Python 3.8):  
 *.\my_env\Scripts\activate.ps1*   
+On mac:
+*source my_venv/bin/activate*   
 4. Make sure you are using the upgrated pip version and install librairies   
 *python -m pip install --upgrade pip*  
 *pip install -r requirements.txt*  
