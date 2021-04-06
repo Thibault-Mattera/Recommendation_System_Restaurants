@@ -41,7 +41,7 @@ For each restaurant, we extract the following information:
 - Number of reviews
 - Reviews (reviewer name, quote, body, date, helpful vote)
 
-In complement, I scraped reviewers' profiles:
+Additionally, I scraped reviewers' profiles:
 - reviewer's location
 - reviewer's contribution (number of posted reviews)
 - number of helpful votes
