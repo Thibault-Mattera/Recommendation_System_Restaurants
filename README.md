@@ -15,8 +15,8 @@ The different steps:
 
 Content of the repositories:    
 - [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app): Flask web-app (recommendation system)
-  * app.py: Python file to run the web app. 
-  * data: scraped data from TripAdvisor (csv file) used then to build a database  
+  * [app.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/app.py): Python file to run the web app. 
+  * data*: scraped data from TripAdvisor (csv file) used then to build a database  
   * models: all files related to the pretrained clustering model
   * src: Python files for the back-end (functions and database)
   * templates: html file for the web-app interface (front-end)
