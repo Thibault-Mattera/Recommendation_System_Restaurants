@@ -107,7 +107,7 @@ Check if you have virtualenv:
 *virtualenv --version*  
 If you don't, install it with:  
 *pip install virtualenv*  
-Create a virtual environment "my_env": 
+Create a virtual environment "my_env":  
 *python -m venv my_env*  
 On mac:   
 *virtualenv my_venv*  
