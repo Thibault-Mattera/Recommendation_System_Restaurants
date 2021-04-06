@@ -100,7 +100,8 @@ The system finds the profiles that are closest to yours and extract the correspo
 
 Access the web-app directly [here](https://tmattera.pythonanywhere.com/)
 
-1. Clone repo locally
+1. Clone repo locally. 
+*git clone https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants.git* 
 2. Create virtual environment 
 Check if you have virtualenv:  
 *virtualenv --version*  
