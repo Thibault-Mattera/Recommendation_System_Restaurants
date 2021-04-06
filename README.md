@@ -100,9 +100,9 @@ The system finds the profiles that are closest to yours and extract the correspo
 
 Access the web-app directly [here](https://tmattera.pythonanywhere.com/)
 
-1. Clone repo locally.  
+**1. Clone repo locally**    
 *git clone https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants* 
-2. Create virtual environment 
+**2. Create virtual environment**  
 Check if you have virtualenv:  
 *virtualenv --version*  
 If you don't, install it with:  
@@ -111,17 +111,17 @@ Create a virtual environment "my_env":
 *python -m venv my_env*  
 On mac:   
 *virtualenv my_venv*  
-3. activate it (Python 3.8):  
+**3. Activate virtual environment (Python 3.8):**  
 *.\my_env\Scripts\activate.ps1*   
 On mac:   
 *source my_venv/bin/activate*   
-4. Make sure you are using the upgrated pip version and install librairies   
+**4. Make sure you are using the upgrated pip version and install librairies**     
 *python -m pip install --upgrade pip*  
 *pip install -r requirements.txt*  
-5. Run flask webapp:  
+**5. Run flask webapp:**     
 *cd app*  
 *python app.py*  
-6. Go to your server localhost to access the web-app:  
+**6. Go to your server localhost to access the web-app:**    
 *http://127.0.0.1:5000/*
 
 
