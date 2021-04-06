@@ -119,6 +119,7 @@ On mac:
 *python -m pip install --upgrade pip*  
 *pip install -r requirements.txt*  
 5. Run flask webapp:  
+*cd app*  
 *python app.py*  
 6. Go to your server localhost to access the web-app:  
 *http://127.0.0.1:5000/*
