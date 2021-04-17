@@ -28,22 +28,8 @@ tqdm.pandas()
 
 ####################################### Functions ################################
 
-def count_rev(x):
-    try:
-        x_l=ast.literal_eval(str(x))
-    except ValueError as ex:
-        _exc_type, exc_value, exc_traceback = sys.exc_info()
-        print("ERROR: %r" % (exc_value))
-        # traceback.print_tb(exc_traceback)
-        last_tb = exc_traceback
-        while last_tb.tb_next:
-            last_tb = last_tb.tb_next
-        print("Error location: line=%d, col=%d" % (
-            last_tb.tb_frame.f_locals["node"].lineno,
-            last_tb.tb_frame.f_locals["node"].col_offset))
-    return len(x_l)
 
-def get_price_ranges(reviews):
+def get_price_ranges(reviews) -> str:
     reviews_l=ast.literal_eval(reviews)
     price_ranges=[]
     if len(reviews_l)>0:
@@ -54,7 +40,8 @@ def get_price_ranges(reviews):
         price_ranges=reviews_l[0]['restaurant_price_range']  
     return price_ranges
 
-def get_cuisines(reviews):
+
+def get_cuisines(reviews) -> list:
     reviews_l=ast.literal_eval(reviews)
     cuisines=[]
     if len(reviews_l)>0:
@@ -68,7 +55,8 @@ def get_cuisines(reviews):
         splited_cuisines.append(" ".join(item.split()))
     return splited_cuisines
 
-def get_locations(reviews):
+
+def get_locations(reviews) -> str:
     reviews_l=ast.literal_eval(reviews)
     locations=[]
     if len(reviews_l)>0:
@@ -79,7 +67,8 @@ def get_locations(reviews):
         locations=reviews_l[0]['restaurant_location']  
     return locations
 
-def get_special_diets(reviews):
+
+def get_special_diets(reviews) -> list:
     reviews_l=ast.literal_eval(reviews)
     special_diets=[]
     if len(reviews_l)>0:
@@ -93,7 +82,8 @@ def get_special_diets(reviews):
         splited_special_diets.append(" ".join(item.split()))
     return splited_special_diets
 
-def get_nb_reviews(reviews):
+
+def get_nb_reviews(reviews) -> int:
     reviews_l=ast.literal_eval(reviews)
     restaurant_nb_reviews=[]
     if len(reviews_l)>0:
@@ -102,7 +92,8 @@ def get_nb_reviews(reviews):
                 restaurant_nb_reviews.append(reviews_l[i]['restaurant_nb_reviews'])
     else:
         restaurant_nb_reviews=reviews_l[0]['restaurant_nb_reviews']  
-    return restaurant_nb_reviews
+    return int(restaurant_nb_reviews)
+
 
 def get_urls(reviews):
     reviews_l=ast.literal_eval(reviews)
@@ -115,8 +106,8 @@ def get_urls(reviews):
         urls=reviews_l[0]['restaurant_url']  
     return urls
 
-# FEATURES PROCESSING FUNCTIONS 
-def mean_price_ranges(x):
+
+def mean_price_ranges(x) -> float:
     ranges=[item.replace('[', '').replace(']', '').split(',') for item in x]
     int_ranges=[[int(y) for y in element] for element in ranges]
     if len(int_ranges)>1:
@@ -125,15 +116,9 @@ def mean_price_ranges(x):
     else:
         mean_price_range=np.mean(int_ranges)
     return mean_price_range
-  
-def median(z):
-    if (z!=[]) and (z!='') and (type(z)==list):
-        median=z[0][0]
-    else:
-        median=[]
-    return median
 
-def count(z):
+
+def count_elements(z) -> list:
     z_list=[]
     for item in z:
         z_list.append(item.split(','))
@@ -148,11 +133,13 @@ def count(z):
         median_cuisines=''
     return count
 
-def mean_number_reviews(x):
-    mean_nb_rev=int(np.mean(x))
+
+def mean_number_reviews(x) -> float:
+    mean_nb_rev=float(np.mean(x))
     return mean_nb_rev
 
-def extract_unique_element(dataset,name_column):
+
+def extract_unique_element(dataset,name_column) -> list:
     c=dataset[name_column].values.tolist()
     z_list=[]
     for item in c:
@@ -165,7 +152,8 @@ def extract_unique_element(dataset,name_column):
     print(len(Counter(cuisines).most_common()), ' ',name_column)
     return Counter(cuisines).most_common()
 
-def clean_values(x):
+
+def clean_values(x) -> list:
     x_list=ast.literal_eval(str(x))
     x_list_cleaned=[]
     for el in x_list:
@@ -178,7 +166,7 @@ def clean_values(x):
     final_list_flat = [item for sublist in final_list for item in sublist]
     return final_list_flat
 
-def replace_cuisines(x):
+def replace_cuisines(x:list) -> list:
     to_Italian=['Southern-Italian','Central-Italian','Northern-Italian', 'Neapolitan', 'Campania', 'Tuscan']
     to_Mexican=['Central American']
     to_Japanese=['Japanese Fusion','Sushi']
@@ -225,7 +213,7 @@ def replace_cuisines(x):
     
     return new_list
 
-def move_to_new_category(x,list_of_items):
+def move_to_new_category(x:list,list_of_items:list) -> list:
     new_list=[]
     for i in range(len(x)):
         if x[i][0] in list_of_items:
@@ -244,7 +232,7 @@ def move_to_new_category(x,list_of_items):
 """
 ## Load dataset and collect features
 
-df_reviewers=pd.read_csv('data/reviewers_info.csv')
+df_reviewers=pd.read_csv('transformed_data/reviewers_info_clean.csv')
 df_reviewers=df_reviewers[['reviewer_name','reviews','number_Zurich_reviews']]
 df_reviewers.drop_duplicates(subset=['reviewer_name'],inplace=True)
 
@@ -253,20 +241,16 @@ df_reviewers=df_reviewers[df_reviewers['number_Zurich_reviews']>9]
 
 # extract features from scraped reviews
 df_reviewers['restaurants_price_ranges']=df_reviewers['reviews'].apply(lambda x: get_price_ranges(x))
-df_reviewers['restaurants_cuisines_0']=df_reviewers['reviews'].apply(lambda x: get_cuisines(x))
+df_reviewers['restaurants_cuisines']=df_reviewers['reviews'].apply(lambda x: get_cuisines(x))
 df_reviewers['restaurants_location']=df_reviewers['reviews'].apply(lambda x: get_locations(x))
 df_reviewers['restaurants_special_diets']=df_reviewers['reviews'].apply(lambda x: get_special_diets(x))
 df_reviewers['restaurants_nb_reviews']=df_reviewers['reviews'].apply(lambda x: get_nb_reviews(x))
 df_reviewers['restaurants_urls']=df_reviewers['reviews'].apply(lambda x: get_urls(x))
 df_reviewers['mean_price_range']=df_reviewers['restaurants_price_ranges'].apply(lambda x: mean_price_ranges(x))
-df_reviewers['count_cuisines']=df_reviewers['restaurants_cuisines_0'].apply(lambda x: count(x))
-df_reviewers['median_cuisines']=df_reviewers['count_cuisines'].apply(lambda x: median(x))
-df_reviewers['count_diets']=df_reviewers['restaurants_special_diets'].apply(lambda x: count(x))
-df_reviewers['median_diets']=df_reviewers['count_diets'].apply(lambda x: median(x))
+df_reviewers['count_cuisines']=df_reviewers['restaurants_cuisines'].apply(lambda x: count_elements(x))
+df_reviewers['count_diets']=df_reviewers['restaurants_special_diets'].apply(lambda x: count_elements(x))
 df_reviewers['mean_restaurants_reviews']=df_reviewers['restaurants_nb_reviews'].apply(lambda x: mean_number_reviews(x))
-df_reviewers=df_reviewers[df_reviewers['median_cuisines']!='[]']
-df_reviewers['restaurants_cuisines']=df_reviewers['restaurants_cuisines_0'].apply(lambda x: clean_values(x))
-del df_reviewers['restaurants_cuisines_0']
+df_reviewers['restaurants_cuisines']=df_reviewers['restaurants_cuisines'].apply(lambda x: clean_values(x))
 
 # Label cuisine and special diets tags in 4 meaningful categories (countries, styles, special diets and other criteria)
 
