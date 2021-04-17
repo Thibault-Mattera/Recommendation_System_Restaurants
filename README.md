@@ -14,7 +14,7 @@ The different steps:
 ## Project content
 
 Content of the repositories:  
--- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants SQL database
+- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants SQL database
 - [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app): Flask web-app (recommendation system)
   * [app.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/app.py): Python file to run the web app. 
   * [data](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/data): scraped data from TripAdvisor (csv file) used then to build a database  
