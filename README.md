@@ -13,20 +13,18 @@ The different steps:
 
 ## Project content
 
-Content of the repositories:    
+Content of the repositories:
+-- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants SQL database
 - [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app): Flask web-app (recommendation system)
   * [app.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/app.py): Python file to run the web app. 
   * [data](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/data): scraped data from TripAdvisor (csv file) used then to build a database  
   * [models](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/models): all files related to the pretrained clustering model
   * [src](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/src): Python files for the back-end (functions and database)
   * [templates](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/templates): html file for the web-app interface (front-end)
-- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts): Python files to prepare the model.
-  * scraper.py: scrapes the data from TripAdvisor. 
-  * data_cleaning.py: cleans the raw csv file from scraping. 
+- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts): Python files to build the clustering model. 
   * eda_restaurants.py: exploratory data analysis about the restaurants in Zurich. 
   * preprocessing_features_engineer.py: re-aranges data to give features (cuisines type) to reviewers.  
   * clustering.py: model to cluster the reviewers.  
-
 
 ## Data gathering: web scraping
 
@@ -42,10 +40,8 @@ For each restaurant, we extract the following information:
 - Reviews (reviewer name, quote, body, date, helpful vote)
 
 Additionally, I scraped reviewers' profiles:
-- reviewer's location
+- reviewer's name
 - reviewer's contribution (number of posted reviews)
-- number of helpful votes
-- joining date on TripAdvisor
 
 ## Exploratory Data Analysis
 
