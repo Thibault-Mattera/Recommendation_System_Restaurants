@@ -132,13 +132,13 @@ data_to_cluster.dropna(inplace=True)
 """## Cuisines Clustering"""
 
 index_cuisine_countries=data_to_cluster.columns.get_loc(cuisine_countries[0])
-X_cat_1=data_to_cluster.iloc[:,index_cuisine_countries:index_cuisine_countries+len(cuisine_countries)].values
-np.save('./X_cat_1.npy', X_cat_1) # save natrix for remmendation engine
+matrix_cuisines=data_to_cluster.iloc[:,index_cuisine_countries:index_cuisine_countries+len(cuisine_countries)].values
+np.save('./matrix_cuisines.npy', matrix_cuisines) # save matrix for remmendation engine
 
-elbow_visualizer(X_cat_1)
+elbow_visualizer(matrix_cuisines)
 
 # cluster reviewers by cuisines
-cuisine_countries_clusters, km_model_X_cat_1=kmeans(X_cat_1,4)
+cuisine_countries_clusters, model_kmeans = kmeans(matrix_cuisines,4)
 
 data_cuisines=data_to_cluster.iloc[:, 8:8+len(cuisine_countries)-1]
 data_cuisines['cuisine_countries_cluster']=cuisine_countries_clusters
@@ -149,14 +149,12 @@ for i in range(len(group_by_cluster)):
     plot_clusters_cuisines(i,cuisine_countries_clusters)
 
 # Save to file in the current working directory
-with open("./cuisine_countries_km.pkl", 'wb') as file:
-    pickle.dump(km_model_X_cat_1, file)
+with open("./model_kmeans_fitted.pkl", 'wb') as file:
+    pickle.dump(model_kmeans, file)
 
 # merge 2 metadata sets
-data_summarized=data_to_cluster[['reviewer_name','restaurants_urls']]
-data_summarized['cuisine_countries_cluster']=data_cuisines['cuisine_countries_cluster']
-data_summarized.reset_index(level=0, inplace=True)
-del data_summarized['index']
+data_labeled=data_to_cluster[['reviewer_name','restaurants_urls']]
+data_labeled['cuisine_countries_cluster']=data_cuisines['cuisine_countries_cluster']
 
 # save final labeled data for webapp
-data_summarized.to_csv('./metadata.csv',index=False)
+data_labeled.to_csv('./metadata.csv',index=False)
