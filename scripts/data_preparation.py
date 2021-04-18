@@ -7,38 +7,13 @@ Preprocessing & feature engineering
 ##################################### Dependencies ##############################
 
 import pandas as pd
-from sklearn import preprocessing
 import ast
-from tqdm.auto import tqdm
-import matplotlib.pyplot as plt
-import ast
-import sys
-from tqdm import tqdm
 import numpy as np
-import matplotlib.pyplot as plt
 from collections import Counter
-import seaborn as sns
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from nltk.corpus import stopwords
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
 import warnings
 warnings.filterwarnings("ignore")
-tqdm.pandas()
 
 ####################################### Functions ################################
-
-
-def get_price_ranges(reviews) -> str:
-    reviews_l=ast.literal_eval(reviews)
-    price_ranges=[]
-    if len(reviews_l)>0:
-        for i in range(len(reviews_l)):
-            if (reviews_l[i]['restaurant_price_range']!='') and (reviews_l[i]['restaurant_price_range']!='[]'):
-                price_ranges.append(reviews_l[i]['restaurant_price_range'])
-    else:
-        price_ranges=reviews_l[0]['restaurant_price_range']  
-    return price_ranges
 
 
 def get_cuisines(reviews) -> list:
@@ -50,22 +25,10 @@ def get_cuisines(reviews) -> list:
                 cuisines.append(reviews_l[i]['restaurant_cuisines'])
     else:
         cuisines=reviews_l[0]['restaurant_cuisines']
-    splited_cuisines=[]
-    for item in cuisines:
-        splited_cuisines.append(" ".join(item.split()))
-    return splited_cuisines
-
-
-def get_locations(reviews) -> str:
-    reviews_l=ast.literal_eval(reviews)
-    locations=[]
-    if len(reviews_l)>0:
-        for i in range(len(reviews_l)):
-            if (reviews_l[i]['restaurant_location']!='') and (reviews_l[i]['restaurant_location']!='[]'):
-                locations.append(reviews_l[i]['restaurant_location'])
-    else:
-        locations=reviews_l[0]['restaurant_location']  
-    return locations
+    cuisines_flat=[item for sublist in cuisines for item in sublist]
+    #for item in cuisines:
+    #   splited_cuisines.append(" ".join(item.split()))
+    return cuisines_flat
 
 
 def get_special_diets(reviews) -> list:
@@ -81,18 +44,6 @@ def get_special_diets(reviews) -> list:
     for item in special_diets:
         splited_special_diets.append(" ".join(item.split()))
     return splited_special_diets
-
-
-def get_nb_reviews(reviews) -> int:
-    reviews_l=ast.literal_eval(reviews)
-    restaurant_nb_reviews=[]
-    if len(reviews_l)>0:
-        for i in range(len(reviews_l)):
-            if (reviews_l[i]['restaurant_nb_reviews']!='') and (reviews_l[i]['restaurant_nb_reviews']!='[]'):
-                restaurant_nb_reviews.append(reviews_l[i]['restaurant_nb_reviews'])
-    else:
-        restaurant_nb_reviews=reviews_l[0]['restaurant_nb_reviews']  
-    return int(restaurant_nb_reviews)
 
 
 def get_urls(reviews):
@@ -224,32 +175,22 @@ def move_to_new_category(x:list,list_of_items:list) -> list:
 ####################################### Execution ################################
 
 """
-4 features: 
-- price range
+2 features: 
 - cuisine country
 - cuisine style
-- number of reviews
 """
 ## Load dataset and collect features
 
-df_reviewers=pd.read_csv('transformed_data/reviewers_info_clean.csv')
-df_reviewers=df_reviewers[['reviewer_name','reviews','number_Zurich_reviews']]
+df_reviewers=pd.read_csv('../ETL/transformed_data/reviewers_info_clean.csv')
 df_reviewers.drop_duplicates(subset=['reviewer_name'],inplace=True)
 
-# select only reviewer with 10 or more reviews
-df_reviewers=df_reviewers[df_reviewers['number_Zurich_reviews']>9]
-
 # extract features from scraped reviews
-df_reviewers['restaurants_price_ranges']=df_reviewers['reviews'].apply(lambda x: get_price_ranges(x))
+#df_reviewers['restaurants_price_ranges']=df_reviewers['reviews'].apply(lambda x: get_price_ranges(x))
 df_reviewers['restaurants_cuisines']=df_reviewers['reviews'].apply(lambda x: get_cuisines(x))
-df_reviewers['restaurants_location']=df_reviewers['reviews'].apply(lambda x: get_locations(x))
 df_reviewers['restaurants_special_diets']=df_reviewers['reviews'].apply(lambda x: get_special_diets(x))
-df_reviewers['restaurants_nb_reviews']=df_reviewers['reviews'].apply(lambda x: get_nb_reviews(x))
 df_reviewers['restaurants_urls']=df_reviewers['reviews'].apply(lambda x: get_urls(x))
-df_reviewers['mean_price_range']=df_reviewers['restaurants_price_ranges'].apply(lambda x: mean_price_ranges(x))
 df_reviewers['count_cuisines']=df_reviewers['restaurants_cuisines'].apply(lambda x: count_elements(x))
 df_reviewers['count_diets']=df_reviewers['restaurants_special_diets'].apply(lambda x: count_elements(x))
-df_reviewers['mean_restaurants_reviews']=df_reviewers['restaurants_nb_reviews'].apply(lambda x: mean_number_reviews(x))
 df_reviewers['restaurants_cuisines']=df_reviewers['restaurants_cuisines'].apply(lambda x: clean_values(x))
 
 # Label cuisine and special diets tags in 4 meaningful categories (countries, styles, special diets and other criteria)
@@ -371,7 +312,7 @@ df_reviewers['cuisine_countries']=df_reviewers['countries'].apply(lambda x: repl
 
 # select only relevant column for recommendation system
 df_reviewers=df_reviewers[['reviewer_name','number_Zurich_reviews','restaurants_urls',
-                             'restaurants_price_ranges','restaurants_nb_reviews','restaurants_cuisines',
-                             'mean_price_range','mean_restaurants_reviews','cuisine_countries','cuisine_styles']]
+                            'cuisine_countries','cuisine_styles']]
+print(df_reviewers.head())
 
-df_reviewers.to_csv('data/reviewers_ready_for_clustering.csv', index=False)
+df_reviewers.to_csv('./reviewers_preprocessed.csv', index=False)
