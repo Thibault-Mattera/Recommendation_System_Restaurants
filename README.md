@@ -23,8 +23,8 @@ Content of the repositories:
   * [templates](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/app/templates): html file for the web-app interface (front-end)
 - [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts): Python files to build the clustering model. 
   * eda_restaurants.py: exploratory data analysis for the restaurants in Zurich.
-  * data_preparation.py: preprocessing & feature engineering 
-  * modelling.py: model to cluster the reviewers.  
+  * [data_preparation.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts/data_preparation.py): preprocessing & feature engineering 
+  * [modeling.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts/modeling.py): model to cluster the reviewers.  
 
 ## Data gathering: web scraping
 
