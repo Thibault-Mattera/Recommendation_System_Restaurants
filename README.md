@@ -50,8 +50,9 @@ This step consist in transforming the raw csv file from scrapin into a clean and
 
 The transformed data is loaded in a SQL database that contains 2 tables:
 - restaurants details  
-- reviewers info     
+- reviewers info      
 
+<img src="/images/restaurants_database.png" width="90%">
 
 ## Exploratory Data Analysis
 
