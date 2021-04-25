@@ -14,17 +14,9 @@ The different steps:
 ## Project content
 
 Content of the repositories:  
-- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants SQL database
-- [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app): Flask web-app (recommendation system)
-  * [app.py](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app/app.py): Python file to run the web app. 
-  * [data](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app/data): scraped data from TripAdvisor (csv file) used then to build a database  
-  * [models](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app/models): all files related to the pretrained clustering model
-  * [src](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app/src): Python files for the back-end (functions and database)
-  * [templates](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app/templates): html file for the web-app interface (front-end)
-- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts): Python files to build the clustering model. 
-  * eda_restaurants.py: exploratory data analysis for the restaurants in Zurich.
-  * [data_preparation.py](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts/data_preparation.py): preprocessing & feature engineering 
-  * [modeling.py](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts/modeling.py): model to cluster the reviewers.  
+- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants. SQL database
+- [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app): Flask web-app (recommendation system).  
+- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts): Python files to build the clustering model   
 
 ## Extracting Transforming and Loading
 
