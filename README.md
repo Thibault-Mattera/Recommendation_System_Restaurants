@@ -26,7 +26,14 @@ Content of the repositories:
   * [data_preparation.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts/data_preparation.py): preprocessing & feature engineering 
   * [modeling.py](https://github.com/Thibault-Mattera/Recommendation_System_Zurich_Restaurants/tree/main/scripts/modeling.py): model to cluster the reviewers.  
 
-## Data gathering: web scraping
+## Extracting Transforming and Loading
+
+I built a pipeline that automatically:
+- extracts the data from TripAdvisor as a raw csv file
+- transforms the data (clean the csv file and build reviewers profiles)
+- load the data in a SQL database
+
+### Extracting (Web-scraping)
 
 As, the first step of the project, I scraped around 1800 restaurants from TripAdvisor.
 For each restaurant, we extract the following information:
@@ -43,6 +50,17 @@ Additionally, I scraped reviewers' profiles:
 - reviewer's name
 - reviewer's contribution (number of posted reviews)
 
+### Transforming
+
+This step consist in transforming the raw csv file from scrapin into a clean and usable dataframe.    
+
+### Loading
+
+The transformed data is loaded in a SQL database that contains 2 tables:
+- restaurants details  
+- reviewers info     
+
+
 ## Exploratory Data Analysis
 
 With a high number of categorical variables (over 150 types of cuisine and special diet), it was important to reduce them by studying their correlations.
@@ -55,7 +73,7 @@ Also, I found interested to analyze the correlations between prices and cuisines
 
 ![](/images/price_cuisine_corr_updated.png)
 
-## Cleaning, preprocessing & feature engineering
+## Feature engineering
 
 First, when analyzing the categorical variables (, I created new columns:
 - cuisines regions (refering to a region)
