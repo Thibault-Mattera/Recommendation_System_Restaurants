@@ -18,7 +18,7 @@ Content of the repositories:
 - [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app): Flask web-app (recommendation system).  
 - [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts): Python files to build the clustering model: exploratory data analysis, data preparation, data modelling.  
 
-## Extracting Transforming and Loading
+## Extracting, Transforming and Loading
 
 I built a pipeline that automatically:
 - extracts the data from TripAdvisor as a raw csv file
