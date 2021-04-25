@@ -48,9 +48,7 @@ This step consist in transforming the raw csv file from scrapin into a clean and
 
 ### Loading
 
-The transformed data is loaded in a SQL database that contains 2 tables:
-- restaurants details  
-- reviewers info      
+The transformed data is loaded in a SQL database containing restaurants details.  
 
 <img src="/images/restaurants_database.png" width="90%">
 
