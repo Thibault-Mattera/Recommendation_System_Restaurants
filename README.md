@@ -14,9 +14,9 @@ The different steps:
 ## Project content
 
 Content of the repositories:  
-- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants. SQL database
+- [**ETL**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/ETL): Extract, Transform & Load pipeline to create the restaurants (from scraped data to a SQL database)
 - [**app**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/app): Flask web-app (recommendation system).  
-- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts): Python files to build the clustering model   
+- [**scripts**](https://github.com/Thibault-Mattera/Recommendation_System_Restaurants/tree/main/scripts): Python files to build the clustering model: exploratory data analysis, data preparation, data modelling.  
 
 ## Extracting Transforming and Loading
 
