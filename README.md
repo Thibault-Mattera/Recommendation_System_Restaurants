@@ -44,7 +44,7 @@ Additionally, I scraped reviewers' profiles:
 
 ### Transforming
 
-This step consist in transforming the raw csv file from scrapin into a clean and usable dataframe.    
+This step consist in transforming the raw csv file from scraping into a clean and usable dataframe.    
 
 ### Loading
 
